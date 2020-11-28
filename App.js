@@ -11,8 +11,18 @@ export default function App() {
 
 
   const resultHandler = () => {
-    set_save_price(original_price*(discount_percentage/100).toFixed(2))
-    set_final_price(original_price - original_price*(discount_percentage/100).toFixed(2))
+    if(original_price>0){
+      if(discount_percentage>0 && discount_percentage <=100){
+        set_save_price(original_price*(discount_percentage/100).toFixed(2))
+        set_final_price(original_price - original_price*(discount_percentage/100).toFixed(2))
+      }
+      else{
+        alert("Discount can't be less than 0 and greater than 100")
+      }
+    }
+    else{
+      alert("Price can't be in negative numbers")
+    }
   }
   return (
       <View style={styles.container}>
