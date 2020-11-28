@@ -7,11 +7,11 @@ export default function App() {
   const [discount_percentage,set_discount_percentage]=useState();
   const [save_price,set_save_price]=useState();
   const [final_price,set_final_price]=useState();
-
+  const history=[];
 
 
   const resultHandler = () => {
-    if(original_price>0){
+    if(original_price>0 && original_price != ""){
       if(discount_percentage>0 && discount_percentage <=100){
         set_save_price(original_price*(discount_percentage/100).toFixed(2))
         set_final_price(original_price - original_price*(discount_percentage/100).toFixed(2))
@@ -36,6 +36,8 @@ export default function App() {
         <TouchableOpacity style={styles.button} onPress={resultHandler}>Calculate</TouchableOpacity>
         <Text style={styles.result}>You Saved:{save_price}</Text>
         <Text style={styles.result}>Final Price:{final_price}</Text>
+        <TouchableOpacity style={styles.button} onPress={resultHandler}>Save It</TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={resultHandler}>History</TouchableOpacity>
       </View>
   );
 }
@@ -79,15 +81,17 @@ const styles = StyleSheet.create({
     marginBottom:5,
     fontFamily:"Sanserif",
     shadowOpacity:2,
+    color:"white",
   },
   result:{
-    margin:"auto",
+    // margin:"auto",
     padding:5,
     marginBottom:5,
     backgroundColor:"grey",
     fontSize:20,
     fontFamily:"Sanserif",
     fontWeight:"bold",
+    color:"white",
 
   }
 });
